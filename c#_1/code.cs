@@ -1,4 +1,4 @@
-using System;
+1using System;
 using System.Collections.Generic;
 
 namespace GuessTheNumberGame
