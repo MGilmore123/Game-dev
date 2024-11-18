@@ -1,83 +1,140 @@
-1using System;
-using System.Collections.Generic;
+using System;
+using System.Threading;
 
-namespace GuessTheNumberGame
+namespace MarioConsoleGame
 {
     class Program
     {
-        // Access Level - Private variable
-        private static int secretNumber;
+        static int playerPositionX = 5;
+        static int playerPositionY = 10;
+        static int screenHeight = 20;
+        static int screenWidth = 50;
+        static bool isJumping = false;
+        static int jumpHeight = 0;
+        static int score = 0;
 
-        // Access Level - Public variable
-        public static List<int> guesses = new List<int>();
-
+        static char[,] screen = new char[screenHeight, screenWidth];
+        
         static void Main(string[] args)
         {
-            // Creating Variables With Data Types
-            int maxAttempts = 5; // Integer variable for attempts
-            bool isGuessed = false; // Boolean to check if number is guessed
+            Console.CursorVisible = false;
+            InitializeScreen();
 
-            // Initializing secret number
-            SetSecretNumber();
-
-            Console.WriteLine("Welcome to Guess the Number Game!");
-            Console.WriteLine("You have 5 attempts to guess the correct number (between 1 and 10).");
-
-            // Demonstrate the use of loops
-            for (int i = 1; i <= maxAttempts; i++)
+            while (true)
             {
-                Console.Write("Attempt " + i + ": Enter your guess: ");
-                int playerGuess = int.Parse(Console.ReadLine());
-                
-                // Store each guess
-                guesses.Add(playerGuess);
+                ClearScreen();
+                HandleInput();
+                UpdateScreen();
+                RenderScreen();
 
-                // Create A Conditional Statement
-                if (CheckGuess(playerGuess))
+                Thread.Sleep(100); // Controls the game speed
+            }
+        }
+
+        static void InitializeScreen()
+        {
+            for (int y = 0; y < screenHeight; y++)
+            {
+                for (int x = 0; x < screenWidth; x++)
                 {
-                    Console.WriteLine("Congratulations! You guessed the correct number.");
-                    isGuessed = true;
-                    break;
+                    screen[y, x] = ' ';
+                }
+            }
+            DrawObstacles();
+        }
+
+        static void ClearScreen()
+        {
+            for (int y = 0; y < screenHeight; y++)
+            {
+                for (int x = 0; x < screenWidth; x++)
+                {
+                    screen[y, x] = ' ';
+                }
+            }
+        }
+
+        static void DrawObstacles()
+        {
+            for (int i = 0; i < screenWidth; i += 10)
+            {
+                for (int j = screenHeight - 3; j < screenHeight; j++)
+                {
+                    screen[j, i] = '#';
+                }
+            }
+        }
+
+        static void HandleInput()
+        {
+            if (Console.KeyAvailable)
+            {
+                ConsoleKey key = Console.ReadKey(true).Key;
+                switch (key)
+                {
+                    case ConsoleKey.LeftArrow:
+                        playerPositionX = Math.Max(0, playerPositionX - 1);
+                        break;
+                    case ConsoleKey.RightArrow:
+                        playerPositionX = Math.Min(screenWidth - 1, playerPositionX + 1);
+                        break;
+                    case ConsoleKey.Spacebar:
+                        if (!isJumping)
+                        {
+                            isJumping = true;
+                            jumpHeight = 3;
+                        }
+                        break;
+                }
+            }
+        }
+
+        static void UpdateScreen()
+        {
+            if (isJumping)
+            {
+                if (jumpHeight > 0)
+                {
+                    playerPositionY--;
+                    jumpHeight--;
                 }
                 else
                 {
-                    Console.WriteLine("Incorrect guess. Try again!");
+                    isJumping = false;
+                }
+            }
+            else
+            {
+                if (playerPositionY < screenHeight - 1 && screen[playerPositionY + 1, playerPositionX] == ' ')
+                {
+                    playerPositionY++;
                 }
             }
 
-            if (!isGuessed)
+            if (screen[playerPositionY, playerPositionX] == '#')
             {
-                Console.WriteLine("Game over! The secret number was: " + secretNumber);
+                Console.Clear();
+                Console.WriteLine($"Game Over! Your score: {score}");
+                Environment.Exit(0);
             }
 
-            Console.WriteLine("Your guesses were: ");
-            DisplayGuesses();
+            screen[playerPositionY, playerPositionX] = 'M';
+            score++;
         }
 
-        // Create a Function
-        static void SetSecretNumber()
+        static void RenderScreen()
         {
-            Random rand = new Random();
-            secretNumber = rand.Next(1, 11); // Random number between 1 and 10
-        }
-
-        // Function to check the guess
-        static bool CheckGuess(int guess)
-        {
-            return guess == secretNumber;
-        }
-
-        // Arrays/Lists - Display list of guesses
-        static void DisplayGuesses()
-        {
-            foreach (int guess in guesses)
+            Console.SetCursorPosition(0, 0);
+            for (int y = 0; y < screenHeight; y++)
             {
-                Console.Write(guess + " ");
+                for (int x = 0; x < screenWidth; x++)
+                {
+                    Console.Write(screen[y, x]);
+                }
+                Console.WriteLine();
             }
-            Console.WriteLine();
+            Console.WriteLine($"\nScore: {score}");
         }
     }
 }
-\
-
-
+wd
