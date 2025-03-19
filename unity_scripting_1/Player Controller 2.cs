@@ -17,6 +17,20 @@ public class CharacterController3D : MonoBehaviour
     }
 
     void Update()
+    
+    void FixedUpdate()
+{
+    // Apply physics-based movement here if needed
+    if (rb != null)
+    {
+        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        float speed = isRunning ? runSpeed : (isCrouching ? crouchSpeed : walkSpeed);
+
+        // Move the rigidbody using physics
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+    }
+}
+
     {
         Move();
         HandleAnimations();
