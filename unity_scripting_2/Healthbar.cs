@@ -1,42 +1,17 @@
-using UnityEngine;
-
-public class HealthComponent : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
-    public float maxHealth = 100f;
-    private float currentHealth;
+    public float maxHealth = 100;
+    public float currentHealth;
+    public UnityEngine.UI.Image healthBarFill;
 
-    public delegate void HealthChanged(float currentHealth, float maxHealth);
-    public event HealthChanged OnHealthChanged;
-
-    private void Awake()
+    void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float damage)
     {
-        currentHealth -= amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        Debug.Log(gameObject.name + " took " + amount + " damage. Current health: " + currentHealth);
-
-        OnHealthChanged?.Invoke(currentHealth, maxHealth);
-
-        if (currentHealth <= 0)
-            Die();
-    }
-
-    public void Heal(float amount)
-    {
-        currentHealth += amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        Debug.Log(gameObject.name + " healed " + amount + ". Current health: " + currentHealth);
-
-        OnHealthChanged?.Invoke(currentHealth, maxHealth);
-    }
-
-    private void Die()
-    {
-        Debug.Log(gameObject.name + " has died.");
-        Destroy(gameObject); // Remove the object upon death
+        currentHealth -= damage;
+        healthBarFill.fillAmount = currentHealth / maxHealth;
     }
 }
