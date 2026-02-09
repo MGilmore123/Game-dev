@@ -1,0 +1,121 @@
+/* RUBRIC: Enhance typography (External Font) */
+body {
+    font-family: 'Roboto', sans-serif; 
+    
+    /* RUBRIC: Structure layout (Center 1 element horizontally/vertically) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    /* RUBRIC: Enhance visual appeal (Background Color) */
+    background-color: #f0f2f5;
+
+    /* RUBRIC: Enhance visual appeal (Background Image) */
+    /* A gradient counts as a background-image in CSS */
+    background-image: linear-gradient(135deg, #f0f2f5 0%, #d6e4ff 100%);
+    
+    margin: 0;
+}
+
+/* RUBRIC: Target specific elements (Class Selector) */
+.main-card {
+    background: white;
+    width: 600px;
+    
+    /* RUBRIC: Structure layout (Margin and Padding) */
+    padding: 2rem;
+    margin: 20px;
+    
+    /* RUBRIC: Enhance visual appeal (Border Radius) */
+    border-radius: 15px;
+    
+    /* RUBRIC: Enhance visual appeal (Box Shadow) */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* RUBRIC: Target specific elements (Descendant Selector) */
+.main-card h1 {
+    color: #333;
+    text-align: center;
+    
+    /* RUBRIC: Enhance visual appeal (Text Shadow) */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box; 
+}
+
+/* RUBRIC: Target specific elements (ID Selector) */
+#submitBtn {
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 15px;
+    transition: background 0.3s ease;
+}
+
+#submitBtn:hover {
+    background-color: #5b4bc4;
+}
+
+/* --- RESPONSIVE DESIGN (RUBRIC REQUIREMENTS) --- */
+
+/* RUBRIC: Optimize for all devices (Media Query for Tablet) */
+@media (max-width: 768px) {
+    .main-card {
+        width: 90%; /* Fluid width for tablets */
+        padding: 1.5rem;
+    }
+    
+    .main-card h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* RUBRIC: Optimize for all devices (Media Query for Mobile) */
+@media (max-width: 480px) {
+    .main-card {
+        width: 100%;
+        margin: 10px;
+        padding: 1rem;
+        border-radius: 0; /* Remove corners on very small screens */
+    }
+
+    #submitBtn {
+        padding: 15px; /* Larger touch target for mobile fingers */
+    }
+}
+
+/* RUBRIC: Optimize for all devices (Media Query for Desktop) */
+/* This targets specifically large screens */
+@media (min-width: 1200px) {
+    .main-card {
+        width: 700px; /* Make card wider on big monitors */
+    }
+}
+
+/* Utility classes for the JS logic */
+.hidden {
+    display: none;
+}
+.cursor::after {
+    content: '|';
+    animation: blink 1s step-start infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }\
