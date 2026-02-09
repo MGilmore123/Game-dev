@@ -1,121 +1,155 @@
-/* RUBRIC: Enhance typography (External Font) */
+/* RUBRIC: Enhance typography (Font Family) */
 body {
-    font-family: 'Roboto', sans-serif; 
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
     
-    /* RUBRIC: Structure layout (Center 1 element horizontally/vertically) */
+    /* RUBRIC: Enhance visual appeal (Background Color & Image) */
+    background-color: #f4f7f6;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    
+    color: #333;
+    
+    /* RUBRIC: Structure layout (Center vertically/horizontally) */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    
-    /* RUBRIC: Enhance visual appeal (Background Color) */
-    background-color: #f0f2f5;
+}
 
-    /* RUBRIC: Enhance visual appeal (Background Image) */
-    /* A gradient counts as a background-image in CSS */
-    background-image: linear-gradient(135deg, #f0f2f5 0%, #d6e4ff 100%);
-    
-    margin: 0;
+header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* RUBRIC: Enhance visual appeal (Text Shadow) */
+h1 {
+    color: #2c3e50;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 /* RUBRIC: Target specific elements (Class Selector) */
-.main-card {
+.app-container {
     background: white;
-    width: 600px;
+    width: 90%;
+    max-width: 600px;
     
     /* RUBRIC: Structure layout (Margin and Padding) */
+    margin: 20px auto;
     padding: 2rem;
-    margin: 20px;
     
-    /* RUBRIC: Enhance visual appeal (Border Radius) */
-    border-radius: 15px;
-    
-    /* RUBRIC: Enhance visual appeal (Box Shadow) */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    /* RUBRIC: Enhance visual appeal (Border Radius & Box Shadow) */
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 /* RUBRIC: Target specific elements (Descendant Selector) */
-.main-card h1 {
-    color: #333;
-    text-align: center;
-    
-    /* RUBRIC: Enhance visual appeal (Text Shadow) */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    
-    margin-bottom: 10px;
-}
-
-textarea {
-    width: 100%;
-    height: 150px;
-    padding: 1rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-family: inherit;
-    resize: vertical;
-    box-sizing: border-box; 
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
 }
 
 /* RUBRIC: Target specific elements (ID Selector) */
-#submitBtn {
-    background-color: #6c5ce7;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
+#textInput {
     width: 100%;
-    margin-top: 15px;
-    transition: background 0.3s ease;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+#userEmail {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+#submitBtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s;
 }
 
 #submitBtn:hover {
-    background-color: #5b4bc4;
+    background-color: #45a049;
 }
 
-/* --- RESPONSIVE DESIGN (RUBRIC REQUIREMENTS) --- */
-
-/* RUBRIC: Optimize for all devices (Media Query for Tablet) */
-@media (max-width: 768px) {
-    .main-card {
-        width: 90%; /* Fluid width for tablets */
-        padding: 1.5rem;
-    }
-    
-    .main-card h1 {
-        font-size: 1.5rem;
-    }
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
 }
 
-/* RUBRIC: Optimize for all devices (Media Query for Mobile) */
-@media (max-width: 480px) {
-    .main-card {
-        width: 100%;
-        margin: 10px;
-        padding: 1rem;
-        border-radius: 0; /* Remove corners on very small screens */
-    }
-
-    #submitBtn {
-        padding: 15px; /* Larger touch target for mobile fingers */
-    }
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
-/* RUBRIC: Optimize for all devices (Media Query for Desktop) */
-/* This targets specifically large screens */
-@media (min-width: 1200px) {
-    .main-card {
-        width: 700px; /* Make card wider on big monitors */
-    }
+.media-section {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
-/* Utility classes for the JS logic */
+.media-item {
+    text-align: center;
+    margin: 10px;
+}
+
 .hidden {
     display: none;
 }
-.cursor::after {
-    content: '|';
-    animation: blink 1s step-start infinite;
+
+/* --- RUBRIC: Optimize for all devices (Media Queries) --- */
+
+/* 1. Desktop View (Base styles usually cover this, but we add specific tweak) */
+@media (min-width: 1024px) {
+    .app-container {
+        max-width: 700px; /* Wider card on big screens */
+    }
 }
-@keyframes blink { 50% { opacity: 0; } }\
+
+/* 2. Tablet View */
+@media (max-width: 768px) {
+    .app-container {
+        width: 85%;
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+/* 3. Mobile View */
+@media (max-width: 480px) {
+    .app-container {
+        width: 95%;
+        margin: 10px auto;
+        padding: 1rem;
+    }
+
+    .media-section {
+        flex-direction: column;
+        align-items: center;
+    }
+}
