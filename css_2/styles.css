@@ -3,13 +3,10 @@ body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    
     /* RUBRIC: Enhance visual appeal (Background Color & Image) */
     background-color: #f4f7f6;
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-    
     color: #333;
-    
     /* RUBRIC: Structure layout (Center vertically/horizontally) */
     display: flex;
     flex-direction: column;
@@ -33,11 +30,9 @@ h1 {
     background: white;
     width: 90%;
     max-width: 600px;
-    
     /* RUBRIC: Structure layout (Margin and Padding) */
     margin: 20px auto;
     padding: 2rem;
-    
     /* RUBRIC: Enhance visual appeal (Border Radius & Box Shadow) */
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -121,7 +116,7 @@ th, td {
 
 /* --- RUBRIC: Optimize for all devices (Media Queries) --- */
 
-/* 1. Desktop View (Base styles usually cover this, but we add specific tweak) */
+/* 1. Desktop View */
 @media (min-width: 1024px) {
     .app-container {
         max-width: 700px; /* Wider card on big screens */
@@ -134,7 +129,6 @@ th, td {
         width: 85%;
         padding: 1.5rem;
     }
-    
     h1 {
         font-size: 2rem;
     }
@@ -147,7 +141,6 @@ th, td {
         margin: 10px auto;
         padding: 1rem;
     }
-
     .media-section {
         flex-direction: column;
         align-items: center;
