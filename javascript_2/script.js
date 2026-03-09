@@ -127,4 +127,4 @@ function loadAppFeatures(container) {
     
     // Output the compiled list to the DOM
     container.innerHTML = htmlBuilder;
-}
+}=2
