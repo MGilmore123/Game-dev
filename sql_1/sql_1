@@ -1,0 +1,66 @@
+-- ==========================================
+-- 1. DATABASE CREATION
+-- ==========================================
+CREATE DATABASE IF NOT EXISTS summari_db;
+USE summari_db;
+
+-- ==========================================
+-- 2. ARCHITECT TABLES (Requirement: 4 Tables)
+-- ==========================================
+
+-- Table 1: User Profiles
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    membership_level ENUM('free', 'premium') DEFAULT 'free'
+);
+
+-- Table 2: Source Content
+CREATE TABLE source_texts (
+    text_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    original_content TEXT NOT NULL,
+    word_count INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Table 3: Generated Summaries
+CREATE TABLE summaries (
+    summary_id INT PRIMARY KEY AUTO_INCREMENT,
+    text_id INT,
+    summary_content TEXT NOT NULL,
+    compression_ratio DECIMAL(3,2),
+    FOREIGN KEY (text_id) REFERENCES source_texts(text_id)
+);
+
+-- Table 4: Content Categories
+CREATE TABLE categories (
+    category_id INT PRIMARY KEY AUTO_INCREMENT,
+    category_name VARCHAR(30) NOT NULL,
+    description VARCHAR(255)
+);
+
+-- ==========================================
+-- 3. POPULATE DATA (Requirement: 2+ Tables, 3+ Rows)
+-- ==========================================
+
+-- Populating Users
+INSERT INTO users (username, email, membership_level) VALUES 
+('tech_guru', 'alex@example.com', 'premium'),
+('student_101', 'sam@university.edu', 'free'),
+('news_junkie', 'jordan@media.com', 'premium');
+
+-- Populating Categories
+INSERT INTO categories (category_name, description) VALUES 
+('Academic', 'Research papers and study guides'),
+('Business', 'Meeting notes and corporate reports'),
+('News', 'Journalism and current event articles');
+
+-- ==========================================
+-- 4. DESCRIBE STRUCTURE (Requirement: Use DESCRIBE)
+-- ==========================================
+DESCRIBE users;
+DESCRIBE source_texts;
+DESCRIBE summaries;
+DESCRIBE categories;
