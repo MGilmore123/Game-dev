@@ -28,7 +28,7 @@ CREATE TABLE source_texts (
 -- Table 3: Generated Summaries
 CREATE TABLE summaries (
     summary_id INT PRIMARY KEY AUTO_INCREMENT,
-    text_id INT,
+    text_id INT, 
     summary_content TEXT NOT NULL,
     compression_ratio DECIMAL(3,2),
     FOREIGN KEY (text_id) REFERENCES source_texts(text_id)
